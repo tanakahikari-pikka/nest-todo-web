@@ -8,9 +8,8 @@ export class TodosService {
       return fetch('https://jsonplaceholder.typicode.com/todos').then(
         (response) => response.json(),
       );
-    } catch (error) {
-      console.error(error);
-      return error;
+    } catch (e) {
+      throw new Error(e.message);
     }
   }
 }
