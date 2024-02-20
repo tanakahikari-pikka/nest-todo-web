@@ -3,10 +3,10 @@ import { TodosService } from './todos.service';
 
 @Controller('todos')
 export class TodosController {
-  constructor(private readonly TodosServise: TodosService) {}
+  constructor(private readonly todosServise: TodosService) {}
 
   @Get()
   async fetchTodos() {
-    return this.TodosServise.fetchTodos();
+    return this.todosServise.fetchTodos();
   }
 }
