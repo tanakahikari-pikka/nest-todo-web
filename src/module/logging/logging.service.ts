@@ -1,5 +1,6 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import * as winston from 'winston';
+// 日付ごとに新しいログファイルを作成し、古いログファイルを自動的に削除する機能を提供するライブラリ
 import * as winstonDailyRotateFile from 'winston-daily-rotate-file';
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'verbose';
@@ -17,6 +18,7 @@ export class LoggingService implements LoggerService {
   private readonly dateFormat = 'YYYY-MM-DD';
   private readonly dirName = '.log';
 
+  // ログの出力先を指定し、ログファイルを生成関数
   private createLogTransport(
     level: LogLevel,
     filename: string,
@@ -31,6 +33,7 @@ export class LoggingService implements LoggerService {
     });
   }
 
+  // logの出力形式を指定
   private readonly loggerFormat = winston.format.combine(
     winston.format.timestamp({ format: `${this.dateFormat} HH:mm:ss` }),
     winston.format.errors({ stack: true }),
@@ -40,6 +43,7 @@ export class LoggingService implements LoggerService {
     ),
   );
 
+  // 開発環境の場合のみ、コンソールにログを出力する
   private readonly createDevelopTransport = new winston.transports.Console({
     level: 'debug',
     format: winston.format.combine(

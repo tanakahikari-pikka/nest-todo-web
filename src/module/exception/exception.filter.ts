@@ -38,13 +38,12 @@ export class AllExceptionFilter implements ExceptionFilter {
     // ロギングとレスポンスのための変数を定義
     const status = this.selectStatus(exception);
     const message = this.selectErrorText(exception).message;
-    const stack = this.selectErrorText(exception).stack;
     const uid = request.uid ? request.uid : 'anonymous';
     const url = request.url;
     const method = request.method;
 
     // ロギング
-    this.log.error({ url, method, uid, message: `${message} : ${stack}` });
+    this.log.error({ url, method, uid, message: `${message}` });
 
     // レスポンス
     response.status(status).send({ statusCode: status, message });
