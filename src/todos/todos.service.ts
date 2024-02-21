@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { Todo } from './todos.model';
 
 @Injectable()
 export class TodosService {
-  fetchTodos() {
-    // https://jsonplaceholder.typicode.com/todos からデータを取得して返す
-    return fetch('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => response.json())
-      .then((json) => {
-        return json;
-      });
+  private todos: Todo[] = [];
+
+  fetchTodos(): Todo[] {
+    return this.todos;
+  }
+
+  createTodo(todo: Todo) {
+    this.todos.push(todo);
+    return todo;
   }
 }
