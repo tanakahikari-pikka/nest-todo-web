@@ -4,6 +4,8 @@ import { Injectable } from '@nestjs/common';
 export class TodosService {
   fetchTodos() {
     try {
+      throw new Error('故意のエラー');
+
       // https://jsonplaceholder.typicode.com/todos からデータを取得して返す
       return fetch('https://jsonplaceholder.typicode.com/todos').then(
         (response) => response.json(),
