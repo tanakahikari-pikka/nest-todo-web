@@ -1,4 +1,4 @@
-export function logger(req, res, next) {
+export function httpObserveLogger(req, res, next) {
   if (req != null) {
     console.log(
       `HTTP Request method: ${req.method} URL: ${req.path} IP: ${req.host} `,
