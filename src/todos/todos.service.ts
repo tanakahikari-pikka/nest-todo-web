@@ -11,7 +11,7 @@ export class TodosService {
         (response) => response.json(),
       );
     } catch (e) {
-      throw new Error(e.message);
+      throw new Error('データの取得に失敗しました');
     }
   }
 }
