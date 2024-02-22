@@ -1,8 +1,8 @@
 name: reviewdog
 
 on:
+  push:
   pull_request:
-    types: [opened, synchronize]
 
 jobs:
   biome:
