@@ -7,4 +7,5 @@ import { AllExceptionFilter } from './exception.filter';
   imports: [LoggingModule],
   providers: [{ provide: APP_FILTER, useClass: AllExceptionFilter }],
 })
-export class ExceptionModule {}
+export class ExceptionModule {
+}
