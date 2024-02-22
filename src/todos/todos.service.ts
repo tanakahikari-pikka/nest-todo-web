@@ -1,17 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class TodosService {
   fetchTodos() {
-    try {
-      throw new Error('故意のエラー');
-
-      // https://jsonplaceholder.typicode.com/todos からデータを取得して返す
-      return fetch('https://jsonplaceholder.typicode.com/todos').then(
-        (response) => response.json(),
-      );
-    } catch (e) {
-      throw new Error('データの取得に失敗しました');
-    }
+    // https://jsonplaceholder.typicode.com/todos からデータを取得して返す
+    return fetch("https://jsonplaceholder.typicode.com/todos").then(
+      (response) => response.json()
+    );
+  }
+  catch() {
+    throw new Error("データの取得に失敗しました");
   }
 }
