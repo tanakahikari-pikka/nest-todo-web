@@ -1,11 +1,15 @@
-export function httpObserveLogger(req, res, next) {
+import { NextFunction, Request, Response } from "express";
+
+export function httpObserveLogger(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) {
 	if (req != null) {
 		console.log(
-			// 現在の時間を出力
-
 			`HTTP Request date: ${new Date()} method: ${req.method} URL: ${
 				req.path
-			} IP: ${req.host} `,
+			} IP: ${req.hostname} `,
 		);
 	}
 	if (res != null) {
