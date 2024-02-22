@@ -1,0 +1,12 @@
+{
+	"cSpell.words": ["biomejs"],
+	"editor.codeActionsOnSave": {
+		"quickfix.biome": "always",
+		"source.organizeImports.biome": "always"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.formatOnSave": true,
+	"editor.quickSuggestions": {
+		"strings": true
+	}
+}
