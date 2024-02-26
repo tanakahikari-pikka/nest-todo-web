@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { TodosService } from "./todos.service";
 
 @Controller("todos")
@@ -9,4 +9,11 @@ export class TodosController {
 	async fetchTodos() {
 		return this.todosService.fetchTodos();
 	}
+
+  @Post()
+  async createTodo(@Body() params: any) {
+    return this.todosService.createTodo(
+      params
+    );
+  }
 }
