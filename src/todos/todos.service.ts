@@ -12,12 +12,15 @@ export class TodosService {
       throw new Error("データの取得に失敗しました: ");
     }
   }
-  // TODO: idをどう渡そう
-  findOne(id: number) {
+  findOne(id: string) {
     try {
-      // https://jsonplaceholder.typicode.com/todos/:id からデータを取得して返す
       return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`).then(
-        (response) => response.json(),
+        (response) => {
+          if (!response.ok) {
+            throw new Error("データが見つかりませんでした");
+          }
+          return response.json();
+        },
       );
     } catch (e) {
       throw new Error("データの取得に失敗しました: ");
