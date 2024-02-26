@@ -17,13 +17,12 @@ export class TodosService {
  findOne(id: string) {
   return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
     .then(response => {
-      if (!response.ok) {
         if (response.status === 404) {
           throw new NotFoundException("データが見つかりませんでした");
-        } else {
-          throw new Error("データの取得に失敗しました: " + response.status);
         }
-      }
+        if (!response.ok) {
+          throw new Error(`データの取得に失敗しました:  ${response.status}` );
+        }
       return response.json();
     })
     .catch(error => {
