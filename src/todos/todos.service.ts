@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
 @Injectable()
 export class TodosService {
@@ -16,8 +16,8 @@ export class TodosService {
     try {
       return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`).then(
         (response) => {
-          if (!response.ok) {
-            throw new Error("データが見つかりませんでした");
+          if (response.status === 404) {
+            throw new NotFoundException("データが見つかりませんでした");
           }
           return response.json();
         },
