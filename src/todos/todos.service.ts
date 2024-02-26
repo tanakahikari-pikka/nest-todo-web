@@ -14,15 +14,13 @@ export class TodosService {
   }
   updateTodo(id: string, title: string) {
     try {
-      return fetch("https://jsonplaceholder.typicode.com/posts/${:id}", {
+      return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         method: "PATCH",
-        body: JSON.stringify({
-          title: "foo",
-        }),
+        body: JSON.stringify({ title }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      });
+      }).then((response) => response.json());
     } catch (e) {
       throw new Error("データの取得に失敗しました: ");
     }
