@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
-import { TodosService } from './todos.service';
+import { Controller, Get } from "@nestjs/common";
+import { TodosService } from "./todos.service";
 
-@Controller('todos')
+@Controller("todos")
 export class TodosController {
-  constructor(private readonly TodosServise: TodosService) {}
+	constructor(private readonly todosService: TodosService) {}
 
-  @Get()
-  async fetchTodos() {
-    return this.TodosServise.fetchTodos();
-  }
+	@Get()
+	async fetchTodos() {
+		return this.todosService.fetchTodos();
+	}
 }
