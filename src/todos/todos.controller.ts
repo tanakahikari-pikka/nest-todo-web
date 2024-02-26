@@ -1,4 +1,4 @@
-import { Controller, Get, Patch } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch } from "@nestjs/common";
 import { TodosService } from "./todos.service";
 
 @Controller("todos")
@@ -10,8 +10,8 @@ export class TodosController {
     return this.todosService.fetchTodos();
   }
 
-  @Patch()
+  @Patch(":id")
   updateTodo(@Param("id") id: string, @Body() body: { title: string }) {
-    return this.todosService.updateTodo();
+    return this.todosService.updateTodo(id, body.title);
   }
 }

@@ -12,9 +12,9 @@ export class TodosService {
       throw new Error("データの取得に失敗しました: ");
     }
   }
-  updateTodo() {
+  updateTodo(id: string, title: string) {
     try {
-      return fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      return fetch("https://jsonplaceholder.typicode.com/posts/${:id}", {
         method: "PATCH",
         body: JSON.stringify({
           title: "foo",
