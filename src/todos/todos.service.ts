@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
 @Injectable()
 export class TodosService {
@@ -15,7 +15,9 @@ export class TodosService {
 
   deleteTodo(id: number) {
     try {
-      // https://jsonplaceholder.typicode.com/todos からデータを削除して返す
+      if (id < 1 || id > 200) {
+        throw new NotFoundException("指定されたIDのデータは存在しません。");
+      }
       return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: "DELETE",
       }).then((response) => response.json());
