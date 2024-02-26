@@ -14,15 +14,18 @@ export class TodosService {
   }
 
   deleteTodo(id: number) {
-    try {
-      if (id < 1 || id > 200) {
-        throw new NotFoundException("指定されたIDのデータは存在しません。");
-      }
       return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: "DELETE",
-      }).then((response) => response.json());
-    } catch (e) {
-      throw new Error("データの削除に失敗しました: ");
-    }
+      }).then((response) =>{
+        if (!response.ok) {
+          if (response.status === 404) {
+          throw new NotFoundException("指定されたIDのデータが見つかりませんでした");
+          } else {
+            throw new Error("データの削除に失敗しました:  " + response.status + " " + response.statusText);
+          }
+        }
+         response.json()}).catch((_) => {
+        throw new Error("データの削除に失敗しました: ");
+      });
   }
 }
