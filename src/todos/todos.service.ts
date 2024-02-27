@@ -20,7 +20,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
@@ -45,7 +45,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
@@ -59,7 +59,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
