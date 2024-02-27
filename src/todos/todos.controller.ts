@@ -6,12 +6,12 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Get()
-  fetchTodos() {
-    return this.todosService.fetchTodos();
+  async fetchTodos() {
+    return await this.todosService.fetchTodos();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.todosService.findOne(id);
+  async findOne(@Param("id") id: string) {
+    return await this.todosService.findOne(id);
   }
 }
