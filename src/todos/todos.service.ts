@@ -30,9 +30,6 @@ export class TodosService {
       method: "DELETE",
     })
       .then((response) => {
-        if (response.status === 404) {
-          throw new NotFoundException("データが見つかりませんでした");
-        }
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
