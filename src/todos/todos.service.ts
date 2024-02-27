@@ -25,4 +25,21 @@ export class TodosService {
         throw error;
       });
   }
+  async deleteOne(id: string) {
+    return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.status === 404) {
+          throw new NotFoundException("データが見つかりませんでした");
+        }
+        if (!response.ok) {
+          throw new Error(`データの取得に失敗しました:  ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }
