@@ -59,7 +59,7 @@ export class TodosService {
         completed: body.completed,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        "Content-type": "application/json;",
       },
     })
       .then((response) => {
