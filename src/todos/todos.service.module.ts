@@ -20,7 +20,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
@@ -32,20 +32,19 @@ export class TodosService {
       body: JSON.stringify({
         userId: body.userId,
         title: body.title,
-        completed: body.completed,
+        completd: body.completed,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
       .then((response) => {
-        if (response.status === 404) {
-          throw new NotFoundException("データが見つかりませんでした");
-        }
+        console.log("hoge");
+        console.log(response);
         if (!response.ok) {
-          throw new Error(`データの取得に失敗しました:  ${response.status}`);
+          throw new Error(`データの作成に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
@@ -59,7 +58,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        return response.json();
+        response.json();
       })
       .catch((error) => {
         throw error;
