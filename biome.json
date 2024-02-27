@@ -16,5 +16,10 @@
   },
   "files": {
     "ignore": ["dist/*", "node_modules/*"]
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
   }
 }
