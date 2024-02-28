@@ -6,7 +6,12 @@ export class TodosService {
   async fetchTodos() {
     //jsonplaceholder.typicode.com/todos からデータを取得して返す
     return fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`データの取得に失敗しました:  ${response.status}`);
+        }
+        return response.json();
+      })
       .catch((error) => {
         throw new Error(`データの取得に失敗しました: ${error}`);
       });
@@ -20,7 +25,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        response.json();
+        return response.json();
       })
       .catch((error) => {
         throw error;
@@ -45,7 +50,33 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        response.json();
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+  async updateOne(id: string, body: Todo) {
+    return fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        id: body.id,
+        userId: body.userId,
+        title: body.title,
+        completed: body.completed,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        if (response.status === 404) {
+          throw new NotFoundException("データが見つかりませんでした");
+        }
+        if (!response.ok) {
+          throw new Error(`データの取得に失敗しました:  ${response.status}`);
+        }
+        return response.json();
       })
       .catch((error) => {
         throw error;
@@ -59,7 +90,7 @@ export class TodosService {
         if (!response.ok) {
           throw new Error(`データの取得に失敗しました:  ${response.status}`);
         }
-        response.json();
+        return response.json();
       })
       .catch((error) => {
         throw error;
